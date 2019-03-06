@@ -3,7 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckoutBL", "CheckoutBL\CheckoutBL.csproj", "{DA318A1F-8B96-4EE1-93DB-289A55839058}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckoutTests", "CheckoutTests\CheckoutTests.csproj", "{F1D10302-1295-4DF5-B10D-1200777687C9}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA318A1F-8B96-4EE1-93DB-289A55839058}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA318A1F-8B96-4EE1-93DB-289A55839058}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA318A1F-8B96-4EE1-93DB-289A55839058}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA318A1F-8B96-4EE1-93DB-289A55839058}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1D10302-1295-4DF5-B10D-1200777687C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1D10302-1295-4DF5-B10D-1200777687C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1D10302-1295-4DF5-B10D-1200777687C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1D10302-1295-4DF5-B10D-1200777687C9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
