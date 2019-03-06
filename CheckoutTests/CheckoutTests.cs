@@ -83,5 +83,20 @@ namespace CheckoutTests
             Assert.AreEqual(50, result);
         }
 
+        [Test]
+        public void Checkout_GetTotalPrice_Should_ReturnSpecialOfferIfValidProducts()
+        {
+            _classUnderTest.AddSpecialOfferRule(offerA);
+
+            for (int i = 1; i < 4; i++)
+            {
+                _classUnderTest.ScanProduct(productA);
+            }
+
+            var result = _classUnderTest.GetTotalPrice();
+
+            Assert.AreEqual(130, result);
+        }
+
     }
 }
