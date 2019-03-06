@@ -8,11 +8,11 @@ namespace CheckoutBL
 {
     public class Checkout
     {
-        public IList<Product> products = new List<Product>();
+        public readonly IList<Product> products = new List<Product>();
 
         public void ScanProduct(Product product)
         {
-
+            products.Add(product);
         }
     }
 }
