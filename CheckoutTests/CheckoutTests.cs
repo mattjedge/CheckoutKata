@@ -66,11 +66,21 @@ namespace CheckoutTests
         }
 
         [Test]
-        public void Checkout_GetTotalPrice_Should_ReturnZeroIfNoItemsScanned()
+        public void Checkout_GetTotalPrice_Should_ReturnZeroIfNoProductScanned()
         {
             var result = _classUnderTest.GetTotalPrice();
 
             Assert.AreEqual(0, result);
+        }
+
+        [Test]
+        public void Checkout_GetTotalPrice_Should_ReturnUnitPriceOfProductA_IfProductAScanned()
+        {
+            _classUnderTest.ScanProduct(productA);
+
+            var result = _classUnderTest.GetTotalPrice();
+
+            Assert.AreEqual(50, result);
         }
 
     }
