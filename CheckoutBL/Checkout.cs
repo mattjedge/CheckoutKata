@@ -39,6 +39,8 @@ namespace CheckoutBL
         {
             double total = 0;
 
+            total += products.Sum(x => x.UnitPrice);
+
             return total;
         }
     }
