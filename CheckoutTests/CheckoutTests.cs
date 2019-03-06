@@ -13,6 +13,7 @@ namespace CheckoutTests
     {
         private Checkout _classUnderTest;
         private readonly Product productA = new Product { SKU = 'A', UnitPrice = 50 };
+        private readonly Product emptyProduct = null;
 
         [SetUp]
         public void SetUp()
@@ -27,6 +28,12 @@ namespace CheckoutTests
 
             Assert.AreEqual(1, _classUnderTest.products.Count());
             Assert.AreEqual('A', _classUnderTest.products[0].SKU);
+        }
+
+        [Test]
+        public void Checkout_ScanProduct_Should_ThrowExceptionIfProductNull()
+        {
+           Assert.Throws<ArgumentNullException>(() => _classUnderTest.ScanProduct(emptyProduct));            
         }
     }
 }

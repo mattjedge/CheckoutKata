@@ -12,7 +12,14 @@ namespace CheckoutBL
 
         public void ScanProduct(Product product)
         {
-            products.Add(product);
+            if (product != null)
+            {
+                products.Add(product);
+            }
+            else
+            {
+                throw new ArgumentNullException("Empty product");
+            }
         }
     }
 }
