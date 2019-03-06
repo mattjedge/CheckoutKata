@@ -40,7 +40,7 @@ namespace CheckoutTests
         }
 
         [Test]
-        public void Checkout_ScanProduct_Should_Add_NumberOfItemsScannedToList()
+        public void Checkout_ScanProduct_Should_AddNumberOfItemsScannedToList()
         {
             for (int i = 1; i < 5; i++)
             {
@@ -63,6 +63,14 @@ namespace CheckoutTests
         public void Checkout_AddSpecialOfferRule_Should_ThrowExceptionIfOfferRuleNull()
         {
             Assert.Throws<ArgumentNullException>(() => _classUnderTest.AddSpecialOfferRule(emptyOffer));
+        }
+
+        [Test]
+        public void Checkout_GetTotalPrice_Should_ReturnZeroIfNoItemsScanned()
+        {
+            var result = _classUnderTest.GetTotalPrice();
+
+            Assert.AreEqual(0, result);
         }
 
     }

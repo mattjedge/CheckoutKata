@@ -34,5 +34,12 @@ namespace CheckoutBL
                 throw new ArgumentNullException("Empty special offer");
             }
         }
+
+        public double GetTotalPrice()
+        {
+            double total = 0;
+
+            return total;
+        }
     }
 }
