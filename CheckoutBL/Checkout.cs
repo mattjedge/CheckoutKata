@@ -25,7 +25,7 @@ namespace CheckoutBL
 
         public void AddSpecialOfferRule(SpecialOffer offer)
         {
-
+            offers.Add(offer);
         }
     }
 }
