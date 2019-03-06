@@ -25,7 +25,14 @@ namespace CheckoutBL
 
         public void AddSpecialOfferRule(SpecialOffer offer)
         {
-            offers.Add(offer);
+            if (offer != null)
+            {
+                offers.Add(offer);
+            }
+            else
+            {
+                throw new ArgumentNullException("Empty special offer");
+            }
         }
     }
 }

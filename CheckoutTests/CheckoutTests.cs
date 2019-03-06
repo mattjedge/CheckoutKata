@@ -15,6 +15,7 @@ namespace CheckoutTests
         private readonly Product productA = new Product { SKU = 'A', UnitPrice = 50 };
         private readonly Product emptyProduct = null;
         private readonly SpecialOffer offerA = new SpecialOffer { SKU = 'A', OfferQuantity = 3, SpecialPrice = 130 };
+        private readonly SpecialOffer emptyOffer = null;
 
 
         [SetUp]
@@ -39,6 +40,17 @@ namespace CheckoutTests
         }
 
         [Test]
+        public void Checkout_ScanProduct_Should_Add_NumberOfItemsScannedToList()
+        {
+            for (int i = 1; i < 5; i++)
+            {
+                _classUnderTest.ScanProduct(productA);
+            }
+
+            Assert.AreEqual(4, _classUnderTest.products.Count());
+        }
+
+        [Test]
         public void Checkout_AddSpecialOfferRule_Should_AddOfferToList()
         {
             _classUnderTest.AddSpecialOfferRule(offerA);
@@ -46,5 +58,12 @@ namespace CheckoutTests
             Assert.AreEqual(1, _classUnderTest.offers.Count());
             Assert.AreEqual('A', _classUnderTest.offers[0].SKU);
         }
+
+        [Test]
+        public void Checkout_AddSpecialOfferRule_Should_ThrowExceptionIfOfferRuleNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => _classUnderTest.AddSpecialOfferRule(emptyOffer));
+        }
+
     }
 }
