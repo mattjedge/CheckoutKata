@@ -13,8 +13,10 @@ namespace CheckoutTests
     {
         private Checkout _classUnderTest;
         private readonly Product productA = new Product { SKU = 'A', UnitPrice = 50 };
+        private readonly Product productB = new Product { SKU = 'B', UnitPrice = 30 };
         private readonly Product emptyProduct = null;
         private readonly SpecialOffer offerA = new SpecialOffer { SKU = 'A', OfferQuantity = 3, SpecialPrice = 130 };
+        private readonly SpecialOffer offerB = new SpecialOffer { SKU = 'B', OfferQuantity = 2, SpecialPrice = 45 };
         private readonly SpecialOffer emptyOffer = null;
 
 
@@ -98,5 +100,39 @@ namespace CheckoutTests
             Assert.AreEqual(130, result);
         }
 
+        [Test]
+        public void Checkout_GetTotalPrice_Should_ReturnSpecialOfferAndUnitPriceTotal()
+        {
+            _classUnderTest.AddSpecialOfferRule(offerA);
+
+            for (int i = 1; i < 5; i++)
+            {
+                _classUnderTest.ScanProduct(productA);
+            }
+
+            var result = _classUnderTest.GetTotalPrice();
+
+            Assert.AreEqual(180, result);
+        }
+
+        [Test]
+        public void Checkout_GetTotalPrice_Should_ReturnSpecialOfferPricingIfMultipleSpecialOffers()
+        {
+            _classUnderTest.AddSpecialOfferRule(offerA);
+            _classUnderTest.AddSpecialOfferRule(offerB);
+
+            for (int i = 1; i < 3; i++)
+            {
+                _classUnderTest.ScanProduct(productB);
+            }
+            for (int i = 1; i < 4; i++)
+            {
+                _classUnderTest.ScanProduct(productA);
+            }
+
+            var result = _classUnderTest.GetTotalPrice();
+
+            Assert.AreEqual(175, result);
+        }        
     }
 }
