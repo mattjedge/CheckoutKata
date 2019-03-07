@@ -1,10 +1,7 @@
 ﻿using CheckoutBL;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CheckoutTests
 {
@@ -105,6 +102,7 @@ namespace CheckoutTests
         {
             _classUnderTest.AddSpecialOfferRule(offerA);
 
+            // one offer price and one unit price, product a
             for (int i = 1; i < 5; i++)
             {
                 _classUnderTest.ScanProduct(productA);
@@ -121,10 +119,12 @@ namespace CheckoutTests
             _classUnderTest.AddSpecialOfferRule(offerA);
             _classUnderTest.AddSpecialOfferRule(offerB);
 
+            // product b special offer (2 items)
             for (int i = 1; i < 3; i++)
             {
                 _classUnderTest.ScanProduct(productB);
             }
+            // product a special offer (3 items)
             for (int i = 1; i < 4; i++)
             {
                 _classUnderTest.ScanProduct(productA);

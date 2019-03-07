@@ -39,30 +39,35 @@ namespace CheckoutBL
         {
             double total = 0;
 
-            var distinctProducts = products.Distinct();
+            var distinctProducts = products.GroupBy(x => x.SKU);
 
             foreach (var product in distinctProducts)
             {
-                var countOfProducts = products.Where(x => x.SKU == product.SKU).Count();
-                var offerRule = offers.SingleOrDefault(x => x.SKU == product.SKU);
+                var offerPricing = offers.SingleOrDefault(x => x.SKU == product.Key);
 
-                if (offerRule != null)
+                if (offerPricing == null)
                 {
-                    while (countOfProducts >= offerRule.OfferQuantity)
-                    {
-                        total += offerRule.SpecialPrice;
-                        countOfProducts -= offerRule.OfferQuantity;
-                    }
-
-                    total += product.UnitPrice * countOfProducts;
+                    total += products.Sum(x => x.UnitPrice);
                 }
                 else
                 {
-                    total += products.Sum(x => x.UnitPrice);
-                }                
+                    var count = product.Count();
+
+                    while (count >= offerPricing.OfferQuantity)
+                    {
+                        total += offerPricing.SpecialPrice;
+
+                        count = count - offerPricing.OfferQuantity;
+                    }
+
+                    var unitPrice = product.ToList().First().UnitPrice;
+                    total += unitPrice * count;
+
+                }
             }
 
             return total;
-        }            
+        }
+    }            
     }
 }
